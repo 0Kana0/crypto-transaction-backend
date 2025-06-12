@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Model ที่มีตัวเเปรใน Tranfer
       Tranfer.belongsTo(models.User, {
         foreignKey: 'sender_id',
         as: 'sender'

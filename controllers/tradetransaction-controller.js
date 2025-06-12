@@ -3,9 +3,89 @@ const TradeTransaction = db.TradeTransaction
 const TradeMarket = db.TradeMarket
 const UserWallet = db.UserWallet
 const User = db.User
+const Crypto = db.Crypto
+const Currency = db.Currency
 
 //------- GET -------//
+exports.tradetransaction_get_trader = async (req, res, next) => {
+  try {
+    const trader_id = req.params.trader_id
 
+    const tradetransactiontrader = await TradeTransaction.findAll({
+      include: [{
+        model: TradeMarket,
+        as: 'trademarket',
+      },{
+        model: Crypto,
+        as: 'crypto',
+        attributes: ['crypto_name']
+      },{
+        model: Currency,
+        as: 'currency',
+        attributes: ['currency_name']
+      },{
+        model: User,
+        as: 'trader',
+        attributes: ['user_name']
+      },{
+        model: User,
+        as: 'recipient',
+        attributes: ['user_name']
+      }],
+      where: {
+        trader_id: trader_id
+      },
+      raw: true
+    })
+
+    res.send({
+      message: 'เรียกข้อมูลการทำธุรกรรมของผู้ลงซื้อขายเหรียญ',
+      data: tradetransactiontrader
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+exports.tradetransaction_get_customer = async (req, res, next) => {
+  try {
+    const customer_id = req.params.customer_id
+
+    const tradetransactioncustomer = await TradeTransaction.findAll({
+      include: [{
+        model: TradeMarket,
+        as: 'trademarket',
+      },{
+        model: Crypto,
+        as: 'crypto',
+        attributes: ['crypto_name']
+      },{
+        model: Currency,
+        as: 'currency',
+        attributes: ['currency_name']
+      },{
+        model: User,
+        as: 'trader',
+        attributes: ['user_name']
+      },{
+        model: User,
+        as: 'recipient',
+        attributes: ['user_name']
+      }],
+      where: {
+        customer_id: customer_id
+      },
+      raw: true
+    })
+
+    res.send({
+      message: 'เรียกข้อมูลการทำธุรกรรมของคนที่มาซื้อขายด้วย',
+      data: tradetransactioncustomer
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 //------- POST -------//
 exports.tradetransaction_post = async (req, res, next) => {
@@ -119,6 +199,7 @@ exports.tradetransaction_put_confirm = async (req, res, next) => {
           id: tradetransaction.trademarket_id,
         },
       })
+      // ถ้าเหรียญในรายการตั้งขายเป็น 0 การตั้งขายนี้จะ Complete
       if (tradetransaction['trademarket.available'] - tradetransaction.crypto_amount == 0) {
         await TradeMarket.update({
           trade_status: "Complete"
@@ -160,6 +241,7 @@ exports.tradetransaction_put_confirm = async (req, res, next) => {
           id: tradetransaction.trademarket_id,
         },
       })
+      // ถ้าเหรียญในรายการตั้งซื้อเป็น 0 การตั้งซื้อนี้จะ Complete
       if (tradetransaction['trademarket.available'] - tradetransaction.crypto_amount == 0) {
         await TradeMarket.update({
           trade_status: "Complete"

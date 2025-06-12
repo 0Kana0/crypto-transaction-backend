@@ -7,7 +7,32 @@ const Tranfer = db.Tranfer
 //------- GET -------//
 exports.tranfer_get_sender = async (req, res, next) => {
   try {
-    
+    const sender_id = req.params.sender_id
+
+    const tranfersender = await Tranfer.findAll({
+      include: [{
+        model: Crypto,
+        as: 'crypto',
+        attributes: ['crypto_name']
+      },{
+        model: User,
+        as: 'sender',
+        attributes: ['user_name']
+      },{
+        model: User,
+        as: 'recipient',
+        attributes: ['user_name']
+      }],
+      where: {
+        sender_id: sender_id
+      },
+      raw: true
+    })    
+
+    res.send({
+      message: 'เรียกข้อมูล tranfer เหรียญไปบัญชีในระบบของผู้ส่งสำเร็จ',
+      data: tranfersender
+    });
   } catch (error) {
     console.log(error);
   }
@@ -15,7 +40,32 @@ exports.tranfer_get_sender = async (req, res, next) => {
 
 exports.tranfer_get_recipient = async (req, res, next) => {
   try {
-    
+    const recipient_id = req.params.recipient_id
+
+    const tranfersender = await Tranfer.findAll({
+      include: [{
+        model: Crypto,
+        as: 'crypto',
+        attributes: ['crypto_name']
+      },{
+        model: User,
+        as: 'sender',
+        attributes: ['user_name']
+      },{
+        model: User,
+        as: 'recipient',
+        attributes: ['user_name']
+      }],
+      where: {
+        recipient_id: recipient_id
+      },
+      raw: true
+    })    
+
+    res.send({
+      message: 'เรียกข้อมูล tranfer เหรียญไปบัญชีในระบบของผู้รับสำเร็จ',
+      data: tranfersender
+    });
   } catch (error) {
     console.log(error);
   }

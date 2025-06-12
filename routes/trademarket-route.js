@@ -8,7 +8,7 @@ const { verifyToken } = require('../middlewares/user-middleware')
 router.get('/gettrademarketbytypebycryptobycurrency/:type/:crypto/:currency', controller.trademarket_get_bytypebycryptobycurrency)
 
 // ข้อมูลเเสดงผู้ใช้งานที่มาตั้งซื้อ-ขาย crypto โดยกรองจาก user
-router.get('/gettrademarketbytypebycryptobycurrency/:user_id', controller.trademarket_get_byuser)
+router.get('/gettrademarketbytypebycryptobycurrency/:user_id', verifyToken, controller.trademarket_get_byuser)
 
 //------- POST -------//
 // ตั้งการซื้อ-ขาย crypto

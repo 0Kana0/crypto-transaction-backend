@@ -28,7 +28,10 @@ module.exports = {
       tranfer_amount: {
         type: Sequelize.DOUBLE
       },
-      outer_detail: {
+      address: {
+        type: Sequelize.STRING
+      },
+      network: {
         type: Sequelize.STRING
       },
       note: {

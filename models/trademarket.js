@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Model ที่มีตัวเเปรใน TradeMarket
       TradeMarket.belongsTo(models.User, {
         foreignKey: 'user_id',
         as: 'user'
@@ -24,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'currency'
       });
 
+      // เชื่อมกับ TradeTransaction
       TradeMarket.hasMany(models.TradeTransaction, {
         foreignKey: 'trademarket_id',
         as: 'tradetransaction'

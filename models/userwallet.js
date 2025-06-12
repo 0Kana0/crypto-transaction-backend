@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Model ที่มีตัวเเปรใน UserWallet
       UserWallet.belongsTo(models.Crypto, {
         foreignKey: 'crypto_id',
         as: 'crypto'

@@ -5,8 +5,30 @@ const Crypto = db.Crypto
 const TranferOuter = db.TranferOuter
 
 //------- GET -------//
-exports.tranfer_get_sender = async (req, res, next) => {
+exports.tranferouter_get_sender = async (req, res, next) => {
   try {
+    const sender_id = req.params.sender_id
+
+    const tranferoutersender = await TranferOuter.findAll({
+      include: [{
+        model: Crypto,
+        as: 'crypto',
+        attributes: ['crypto_name']
+      },{
+        model: User,
+        as: 'user',
+        attributes: ['user_name']
+      }],
+      where: {
+        sender_id: sender_id
+      },
+      raw: true
+    })    
+
+    res.send({
+      message: 'เรียกข้อมูล tranfer เหรียญไปนอกระบบของผู้ส่งสำเร็จ',
+      data: tranferoutersender
+    });
     
   } catch (error) {
     console.log(error);
@@ -18,7 +40,8 @@ exports.tranferouter_post = async (req, res, next) => {
   try {
     const { 
       sender_name,
-      outer_detail,
+      address,
+      network,
       crypto_name,
       tranfer_amount,
       note,
@@ -64,7 +87,8 @@ exports.tranferouter_post = async (req, res, next) => {
 
     await TranferOuter.create({
       sender_id: sender.id,
-      outer_detail: outer_detail,
+      address: address,
+      network: network,
       crypto_id: crypto.id,
       tranfer_amount: tranfer_amount,
       note: note

@@ -11,17 +11,30 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // เชื่อมกับ UserWallet
       Crypto.hasMany(models.UserWallet, {
         foreignKey: 'crypto_id',
         as: 'userwallet'
       });
+      // เชื่อมกับ TradeMarket
       Crypto.hasMany(models.TradeMarket, {
         foreignKey: 'crypto_id',
         as: 'trademarket'
       });
+      // เชื่อมกับ TradeTransaction
+      Crypto.hasMany(models.TradeTransaction, {
+        foreignKey: 'crypto_id',
+        as: 'tradetransaction'
+      });
+      // เชื่อมกับ Tranfer
       Crypto.hasMany(models.Tranfer, {
         foreignKey: 'crypto_id',
         as: 'tranfer'
+      });
+      // เชื่อมกับ TranferOuter
+      Crypto.hasMany(models.TranferOuter, {
+        foreignKey: 'crypto_id',
+        as: 'tranferouter'
       });
     }
   }

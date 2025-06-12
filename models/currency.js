@@ -11,9 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // เชื่อมกับ TranferOuter
       Currency.hasMany(models.TradeMarket, {
         foreignKey: 'currency_id',
         as: 'trademarket'
+      });
+      // เชื่อมกับ TradeTransaction
+      Currency.hasMany(models.TradeTransaction, {
+        foreignKey: 'currency_id',
+        as: 'tradetransaction'
       });
     }
   }

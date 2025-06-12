@@ -11,9 +11,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Model ที่มีตัวเเปรใน TradeTransaction
       TradeTransaction.belongsTo(models.TradeMarket, {
         foreignKey: 'trademarket_id',
         as: 'trademarket'
+      });
+      TradeTransaction.belongsTo(models.Crypto, {
+        foreignKey: 'crypto_id',
+        as: 'crypto'
+      });
+      TradeTransaction.belongsTo(models.Currency, {
+        foreignKey: 'currency_id',
+        as: 'currency'
+      });
+      TradeTransaction.belongsTo(models.User, {
+        foreignKey: 'trader_id',
+        as: 'trader'
+      });
+      TradeTransaction.belongsTo(models.User, {
+        foreignKey: 'customer_id',
+        as: 'recipient'
       });
     }
   }
