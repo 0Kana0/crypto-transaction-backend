@@ -26,9 +26,11 @@ db.sequelize
     console.log("Failed to connect db: " + err.message);
   });
 
+// เรียกใช้งาน route ทุกไฟล์
 readdirSync('./routes')
 .map((r) => app.use('/api', require('./routes/' + r)))
 
+// เชื่อมต่อกับ port
 const port = process.env.PORT
 app.listen(port, function () {
   console.log('CORS-enabled web server listening on port ' + port)

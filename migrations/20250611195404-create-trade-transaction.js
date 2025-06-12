@@ -17,7 +17,7 @@ module.exports = {
           key: 'id'
         }
       },
-      crypto_buyer_id: {
+      trader_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -25,7 +25,7 @@ module.exports = {
           key: 'id'
         }
       },
-      crypto_seller_id: {
+      customer_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -49,6 +49,10 @@ module.exports = {
           key: 'id'
         }
       },
+      price: {
+        defaultValue: 0,
+        type: Sequelize.DOUBLE
+      },
       fiat_amount: {
         defaultValue: 0,
         type: Sequelize.DOUBLE
@@ -58,6 +62,10 @@ module.exports = {
         type: Sequelize.DOUBLE
       },
       bank_number: {
+        type: Sequelize.STRING
+      },
+      trade_type: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       transaction_status: {

@@ -40,11 +40,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.User = require("./user.js")(sequelize, Sequelize);
-db.Crypto = require("./crypto.js")(sequelize, Sequelize);
-db.Currency = require("./currency.js")(sequelize, Sequelize);
-db.UserWallet = require("./userwallet.js")(sequelize, Sequelize);
-db.TradeMarket = require("./trademarket.js")(sequelize, Sequelize);
-db.TradeTransaction = require("./tradetransaction.js")(sequelize, Sequelize);
-
 module.exports = db;

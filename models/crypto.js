@@ -11,6 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Crypto.hasMany(models.UserWallet, {
+        foreignKey: 'crypto_id',
+        as: 'userwallet'
+      });
+      Crypto.hasMany(models.TradeMarket, {
+        foreignKey: 'crypto_id',
+        as: 'trademarket'
+      });
+      Crypto.hasMany(models.Tranfer, {
+        foreignKey: 'crypto_id',
+        as: 'tranfer'
+      });
     }
   }
   Crypto.init({

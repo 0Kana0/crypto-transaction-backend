@@ -11,19 +11,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      TradeMarket.belongsTo(models.User, {
+        foreignKey: 'user_id',
+        as: 'user'
+      });
+      TradeMarket.belongsTo(models.Crypto, {
+        foreignKey: 'crypto_id',
+        as: 'crypto'
+      });
+      TradeMarket.belongsTo(models.Currency, {
+        foreignKey: 'currency_id',
+        as: 'currency'
+      });
+
+      TradeMarket.hasMany(models.TradeTransaction, {
+        foreignKey: 'trademarket_id',
+        as: 'tradetransaction'
+      });
     }
   }
   TradeMarket.init({
-    userwallet_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     crypto_id: DataTypes.INTEGER,
     currency_id: DataTypes.INTEGER,
     price: DataTypes.DOUBLE,
     available: DataTypes.DOUBLE,
     min_trade: DataTypes.DOUBLE,
-    max_trade: DataTypes.DOUBLE,
     payment: DataTypes.STRING,
-    trade_type: DataTypes.STRING
+    trade_type: DataTypes.STRING,
+    trade_status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'TradeMarket',

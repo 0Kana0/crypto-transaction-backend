@@ -30,13 +30,6 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date()
         },
-        {
-          user_name: 'nakano itsuki',
-          email: 'nakanoitsuki@gmail.com',
-          password: await bcrypt.hash('33333333', 10),
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
       ],
       {}
     );
@@ -60,73 +53,45 @@ module.exports = {
         {
           user_id: 1,
           crypto_id: 3,
-          crypto_balance: 1000,
+          crypto_balance: 0,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: 1,
           crypto_id: 4,
+          crypto_balance: 0,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          user_id: 2,
+          crypto_id: 1,
+          crypto_balance: 0,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          user_id: 2,
+          crypto_id: 2,
+          crypto_balance: 0,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          user_id: 2,
+          crypto_id: 3,
           crypto_balance: 1000,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: 2,
-          crypto_id: 1,
-          crypto_balance: 0,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          user_id: 2,
-          crypto_id: 2,
-          crypto_balance: 0,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          user_id: 2,
-          crypto_id: 3,
-          crypto_balance: 0,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          user_id: 2,
           crypto_id: 4,
-          crypto_balance: 0,
+          crypto_balance: 1000,
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-        {
-          user_id: 3,
-          crypto_id: 1,
-          crypto_balance: 100,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          user_id: 3,
-          crypto_id: 2,
-          crypto_balance: 100,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          user_id: 3,
-          crypto_id: 3,
-          crypto_balance: 0,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          user_id: 3,
-          crypto_id: 4,
-          crypto_balance: 0,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
+        }
       ],
       {}
     );
